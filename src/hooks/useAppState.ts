@@ -8,7 +8,7 @@
 
 import {useState} from 'react';
 
-export const useResettableState = <T extends object>(defaultValue: T) => {
+export const useAppState = <T extends object>(defaultValue: T) => {
   const [state, setState] = useState<T>(defaultValue);
   const resetState = () => setState(defaultValue);
   const updateState = <K extends keyof T>(key: K, value: T[K]) => {
@@ -21,4 +21,4 @@ export const useResettableState = <T extends object>(defaultValue: T) => {
   return [state, updateState, resetState , setState] as const;
 };
 
-export default useResettableState;
+export default useAppState;
