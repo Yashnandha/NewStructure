@@ -2,7 +2,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import axiosInstance from '../../api';
 import constant from '../../config/constant';
 import {getUserDetails} from './reducer';
-
+import {UserApiCallParams} from './interface'
 /**
  * users = your reducer name
  * fetchUserProfile action and function name
@@ -10,7 +10,8 @@ import {getUserDetails} from './reducer';
 
 const fetchUserProfile = createAsyncThunk(
   'users/fetchUserProfile',
-  async (token: string | undefined, thunkAPI) => {
+  async ({token, userId}: UserApiCallParams,
+    thunkAPI,) => {
     try {
       const response = await axiosInstance.get(constant.baseURL, {
         headers: {

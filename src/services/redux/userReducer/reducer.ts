@@ -21,7 +21,7 @@ const UserData = createSlice({
     loginSuccess: (state: ReducerState, action: { payload: any; }) => {
       return {
         ...state,
-        token: 'JHSHGSVVHFGHGSSSS',
+        token: '',
         userData: action.payload,
         isLogin: true,
       };

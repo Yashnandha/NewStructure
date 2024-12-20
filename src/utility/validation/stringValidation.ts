@@ -13,7 +13,7 @@ const StringValidation = (string: string) => {
   return validate;
 };
 const checkEmail = (value: string) => {
-  const condition = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+  const condition = new RegExp(/^[_a-za-zA-Z0-9-+]+(\.[_a-za-zA-Z0-9-+]+)*@[a-za-zA-Z0-9-]+(\.[_a-za-zA-Z0-9-]{3})*(?:\.[_a-za-zA-Z]{2,3})$/);
   return condition.test(value);
 };
 const checkPassword = (value: string) => {
@@ -42,10 +42,6 @@ const checkString = (value: string) => {
   const condition = new RegExp(/^[a-zA-Z ]+$/);
   return condition.test(value);
 };
-// const checkMobileNumber = (value: string) => {
-//   const condition = new RegExp(/^(?!(\d)\1{4})(?!.*(\d)\2{4})[6789]\d{9}$/);
-//   return condition.test(value);
-// };
 
 const checkMobileNumber = (value: string) => {
   const condition = new RegExp(/^\d{10}$/);

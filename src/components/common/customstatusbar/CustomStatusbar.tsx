@@ -1,32 +1,32 @@
-import React, {memo} from 'react';
-import {StatusBar, View} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {propType} from './customStatusbarProps';
-import color from '@theme/color';
+import React, { memo } from "react";
+import { StatusBar, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { propType } from "./customStatusbarProps";
+import color from "@theme/color";
 
-const CustomStatusBar: React.FC<propType> = props => {
+const CustomStatusBar: React.FC<propType> = ({
+  backgroundColor = color.white,
+  barStyle = "dark-content",
+  ...props
+}) => {
   const insets = useSafeAreaInsets();
   return (
     <View
       style={[
-        {height: insets.top, backgroundColor: props.backgroundColor},
+        { height: insets.top, backgroundColor: backgroundColor },
         props.containerStyle,
-      ]}>
+      ]}
+    >
       <StatusBar
         animated={true}
-        backgroundColor={props.backgroundColor}
-        barStyle={props.barStyle}
+        backgroundColor={backgroundColor}
+        barStyle={barStyle}
         translucent={props.translucent}
-        {...props}
         hidden={props.hidden}
+        {...props}
       />
     </View>
   );
-};
-
-CustomStatusBar.defaultProps = {
-  backgroundColor: color.white,
-  barStyle: 'dark-content',
 };
 
 export default memo(CustomStatusBar);

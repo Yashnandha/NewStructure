@@ -11,3 +11,6 @@ export interface loginPayload {
   email: string;
   password: string;
 }
+
+
+interface UserApiCallParams {token?: string | undefined; userId: string}
