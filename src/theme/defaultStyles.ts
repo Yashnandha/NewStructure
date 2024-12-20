@@ -20,4 +20,15 @@ export const defaultStyles = StyleSheet.create({
     borderRadius: 16,
     gap: 20,
   },
+  flex: {
+    flex: 1,
+  },
+  centerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  centeredView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
