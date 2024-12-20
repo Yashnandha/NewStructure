@@ -42,10 +42,6 @@ const checkString = (value: string) => {
   const condition = new RegExp(/^[a-zA-Z ]+$/);
   return condition.test(value);
 };
-// const checkMobileNumber = (value: string) => {
-//   const condition = new RegExp(/^(?!(\d)\1{4})(?!.*(\d)\2{4})[6789]\d{9}$/);
-//   return condition.test(value);
-// };
 
 const checkMobileNumber = (value: string) => {
   const condition = new RegExp(/^\d{10}$/);
