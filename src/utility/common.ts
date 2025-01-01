@@ -2,12 +2,7 @@ import {Platform} from 'react-native';
 
 const keyboardBehavior = Platform.OS == 'ios' ? 'padding' : undefined;
 const activeOpacity = 0.7;
-const hitSlops = {
-    bottom: 15,
-    left: 15,
-    right: 15,
-    top: 15,
-  };
+const hitSlops = 20;
 
   const timerTime = (e: number) => {
     const h = Math.floor(e / 3600)
