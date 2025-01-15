@@ -1,7 +1,7 @@
 import colors from '@theme/color';
 import { StyleSheet } from 'react-native';
 
-export const defaultStyles = StyleSheet.create({
+const defaultStyles = StyleSheet.create({
   loadingOverlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: colors.backdropped,
@@ -32,3 +32,6 @@ export const defaultStyles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+
+export default defaultStyles
