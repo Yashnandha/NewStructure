@@ -1,46 +1,55 @@
-/**
- * @function useFormikUpdater
- * Used for set and update values from formik
- *
- * @function useFormikError
- * Used for get touched error values
- */
+import {useCallback} from 'react';
+import {FormikHelpers, FormikState} from 'formik';
 
-// import {useCallback} from 'react';
-// import {FormikErrors, FormikHelpers, FormikTouched} from 'formik';
+const useFormikUpdater = <T extends Record<string, any>>(
+  formik: Pick<FormikHelpers<T>, 'setValues'> & {values: T},
+) => {
+  const updateValues = useCallback(
+    (key: keyof T, value: T[keyof T]) => {
+      formik.setValues(prevValues => ({
+        ...prevValues,
+        [key]: value,
+      }));
+    },
+    [formik],
+  );
 
-// const useFormikUpdater = <T extends Record<string, any>>(
-//   formik: Pick<FormikHelpers<T>, 'setValues'> & {values: T},
-// ) => {
-//   const updateValues = useCallback(
-//     (key: keyof T, value: T[keyof T]) => {
-//       formik.setValues(prevValues => ({
-//         ...prevValues,
-//         [key]: value,
-//       }));
-//     },
-//     [formik],
-//   );
+  return updateValues;
+};
 
-//   return updateValues;
-// };
+const useFormikError = <T extends Record<string, any>>(
+  formik: FormikState<T>,
+) => {
+  const getFieldError = useCallback(
+    <K extends keyof T>(key: K): T[K] | null => {
+      const isTouched = formik.touched[key];
+      const error = formik.errors[key];
 
-// const useFormikError = <T extends Record<string, any>>(
-//   formik: Pick<FormikHelpers<T>, 'setFieldTouched' | 'validateField'> & {
-//     touched: FormikTouched<T>;
-//     errors: FormikErrors<T>;
-//   },
-// ) => {
-//   const getFieldError = useCallback(
-//     (key: keyof T) => {
-//       if (formik.touched[key] && formik.errors[key]) {
-//         return formik.errors[key];
-//       }
-//       return '';
-//     },
-//     [formik.touched, formik.errors],
-//   );
-//   return getFieldError;
-// };
+      if (isTouched && error !== undefined) {
+        return error as T[K]; // Safely cast the error to the expected type
+      }
 
-// export {useFormikUpdater, useFormikError};
+      return null;
+    },
+    [formik.touched, formik.errors],
+  );
+
+  return getFieldError;
+};
+
+const useFormikValues = <T extends Record<string, any>>(
+  formik: FormikState<T>,
+) => {
+  const getFieldValues = useCallback(
+    <K extends keyof T>(key: K): T[K] | null => {
+      const values = formik.values[key];
+      if (values) return values as T[K]; // Safely cast the error to the expected type
+      return null;
+    },
+    [formik.values],
+  );
+
+  return getFieldValues;
+};
+
+export {useFormikUpdater, useFormikError, useFormikValues};
