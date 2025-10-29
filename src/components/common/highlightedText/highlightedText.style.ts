@@ -1,5 +1,5 @@
-import { color } from '@theme';
-import { StyleSheet } from 'react-native';
+import color from '@theme/color';
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   defaultText: {

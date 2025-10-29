@@ -3,7 +3,7 @@ import {color} from '../../../theme';
 
 const styles = StyleSheet.create({
   reamMoreLabel: {
-    color: color.darkPurple,
+    color: color.primary,
   },
 });
 

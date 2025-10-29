@@ -1,5 +1,6 @@
-import { color, font } from '@theme';
-import { StyleSheet } from 'react-native';
+import color from '@theme/color';
+import font from '@theme/font';
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   error: {
@@ -8,7 +9,7 @@ const styles = StyleSheet.create({
   },
   errorText: {
     includeFontPadding: false,
-    fontFamily: font.supremeRegular,
+    fontFamily: font.poppinsMedium,
     fontSize: 12,
     color: color.red,
     marginTop: 5,

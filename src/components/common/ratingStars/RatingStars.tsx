@@ -1,8 +1,8 @@
 import imageIndex from '@imageIndex';
 import React from 'react';
-import { Image, Pressable, View } from 'react-native';
+import {Image, Pressable, View} from 'react-native';
 import styles from './ratingStars.style';
-import { RatingStarsProps } from './ratingStarsProps';
+import {RatingStarsProps} from './ratingStarsProps';
 
 const RatingStars: React.FC<RatingStarsProps> = ({
   totalStars = 5,
@@ -20,7 +20,7 @@ const RatingStars: React.FC<RatingStarsProps> = ({
 
   return (
     <View style={[styles.ratingStarStyle, containerStyle]}>
-      {Array.from({ length: totalStars }).map((_, index) => {
+      {Array.from({length: totalStars}).map((_, index) => {
         const starPosition = index + 1;
         let fillPercent = 0;
         if (!allowFractionalFill) {
@@ -40,8 +40,7 @@ const RatingStars: React.FC<RatingStarsProps> = ({
             key={index}
             style={[styles.startContainer, starWrapperStyle]}
             onPress={() => onChange?.(starPosition)}
-            disabled={disabled}
-          >
+            disabled={disabled}>
             <Image
               style={[styles.starImage, starImageStyle]}
               source={blankStar}
@@ -58,8 +57,7 @@ const RatingStars: React.FC<RatingStarsProps> = ({
                   width: `${fillPercent}%`,
                   height: '100%',
                   overflow: 'hidden',
-                }}
-              >
+                }}>
                 <Image
                   style={[styles.starImage, starImageStyle]}
                   source={filledStar}

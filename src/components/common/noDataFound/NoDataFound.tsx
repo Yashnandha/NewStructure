@@ -1,6 +1,6 @@
-import React, { memo } from 'react';
-import { StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
-import { color, font } from '../../../theme';
+import React, {memo} from 'react';
+import {StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
+import {color, font} from '../../../theme';
 
 interface NoDataObj {
   containerStyle?: StyleProp<ViewStyle> | undefined;
@@ -21,7 +21,7 @@ export default memo(NoDataFound);
 
 const styles = StyleSheet.create({
   nodataLabel: {
-    fontFamily: font.supremeRegular,
+    fontFamily: font.poppinsRegular,
     fontSize: 15,
     color: color.black,
   },

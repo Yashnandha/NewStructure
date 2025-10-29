@@ -1,5 +1,5 @@
-import { font } from '@theme';
-import { StyleSheet } from 'react-native';
+import font from '@theme/font';
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -33,13 +33,13 @@ const styles = StyleSheet.create({
   btnTextActive: {
     color: '#fff',
     fontWeight: 'bold',
-    fontFamily: font.supremeMedium,
+    fontFamily: font.poppinsMedium,
     fontSize: 14,
     lineHeight: 20,
   },
   btnTextInActive: {
     color: '#000',
-    fontFamily: font.supremeRegular,
+    fontFamily: font.poppinsRegular,
     fontSize: 14,
     lineHeight: 20,
   },
