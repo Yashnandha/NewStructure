@@ -1,8 +1,8 @@
-import {useCallback} from 'react';
-import {FormikHelpers, FormikState} from 'formik';
+import { FormikHelpers, FormikState } from 'formik';
+import { useCallback } from 'react';
 
 const useFormikUpdater = <T extends Record<string, any>>(
-  formik: Pick<FormikHelpers<T>, 'setValues'> & {values: T},
+  formik: Pick<FormikHelpers<T>, 'setValues'> & { values: T },
 ) => {
   const updateValues = useCallback(
     (key: keyof T, value: T[keyof T]) => {
@@ -52,4 +52,4 @@ const useFormikValues = <T extends Record<string, any>>(
   return getFieldValues;
 };
 
-export {useFormikUpdater, useFormikError, useFormikValues};
+export { useFormikError, useFormikUpdater, useFormikValues };

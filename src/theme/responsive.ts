@@ -1,5 +1,4 @@
 import {Dimensions, PixelRatio} from 'react-native';
-import {width, height} from '@theme/globalStyle';
 
 const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get('window');
 
@@ -97,4 +96,4 @@ const scaleDimension = (size: number): number => {
   return size;
 };
 
-export {getDeviceType, getFontSize, adjustFontConfig, scaleDimension};
+export {adjustFontConfig, getDeviceType, getFontSize, scaleDimension};

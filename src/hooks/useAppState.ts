@@ -5,7 +5,7 @@
  * Forth value is for set state value using `...` operator
  */
 
-import {useState} from 'react';
+import { useState } from 'react';
 
 // Generate all possible nested keys for better autocomplete support
 type NestedKey<T, P extends string = ''> = T extends object
@@ -26,11 +26,11 @@ const setNestedValue = <T extends object>(
 ): T => {
   const keys = (path as string).toString().split('.');
   const lastKey = keys.pop()!;
-  let nestedObj: any = {...obj};
+  let nestedObj: any = { ...obj };
 
   let temp = nestedObj;
   for (const key of keys) {
-    temp[key] = temp[key] ? {...temp[key]} : {};
+    temp[key] = temp[key] ? { ...temp[key] } : {};
     temp = temp[key];
   }
   temp[lastKey] = value;

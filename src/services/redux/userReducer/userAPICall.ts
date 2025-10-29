@@ -1,8 +1,7 @@
+import {axiosInstance} from '@api/api';
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import axiosInstance from '../../api';
 import constant from '../../config/constant';
-import {getUserDetails} from './reducer';
-import {UserApiCallParams} from './interface'
+
 /**
  * users = your reducer name
  * fetchUserProfile action and function name
@@ -10,22 +9,23 @@ import {UserApiCallParams} from './interface'
 
 const fetchUserProfile = createAsyncThunk(
   'users/fetchUserProfile',
-  async ({token, userId}: UserApiCallParams,
-    thunkAPI,) => {
+  async ({token}: {token: string | undefined}, thunkAPI) => {
     try {
-      const response = await axiosInstance.get(constant.baseURL, {
+      const response = await axiosInstance.get(`${constant.profile}`, {
         headers: {
-          auth: token,
+          Auth: `${token}`, // Standard auth header format
         },
-      }); // Replace with your API endpoint
-      if (response.data.status == 200) {
-        thunkAPI.dispatch(getUserDetails(response?.data?.data));
-        return response.data.data;
+      });
+
+      if (response.status === 200 || response.status === 201) {
+        thunkAPI.fulfillWithValue(response.data.data);
+        return response.data?.data;
+      } else {
+        return thunkAPI.rejectWithValue(response.data?.data);
       }
     } catch (error: any) {
-      {
-        return thunkAPI.rejectWithValue(error.response.data);
-      }
+      const message = error.response?.data || 'An unknown error occurred';
+      return thunkAPI.rejectWithValue(message);
     }
   },
 );

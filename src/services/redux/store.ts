@@ -1,4 +1,4 @@
-import {configureStore} from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
 import {
   persistReducer,
   FLUSH,
@@ -7,24 +7,29 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from 'redux-persist';
-import storage from '@react-native-async-storage/async-storage';
-import rootReducer from './rootReducer';
+  persistStore,
+} from "redux-persist";
+import storage from "@react-native-async-storage/async-storage";
+import rootReducer from "./rootReducer";
+import { mmkvStorage } from "./mmkvStorage"
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   version: 1,
-  storage,
+  storage:mmkvStorage
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const Store = configureStore({
+export const store = configureStore({
   reducer: persistedReducer,
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
 });
+export type AppDispatch = typeof store.dispatch;
+
+export const persistedStore = persistStore(store);

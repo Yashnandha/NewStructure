@@ -8,11 +8,7 @@ const useDebounce = (searchValues: string) => {
   const [debounceVal, setDebounceVal] = useState<string | null>(null);
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      if ((searchValues ?? '')?.length >= 3) {
-        setDebounceVal(searchValues);
-      } else {
-        setDebounceVal(null);
-      }
+      setDebounceVal(searchValues);
     }, 1000);
 
     return () => clearTimeout(delayDebounceFn);
